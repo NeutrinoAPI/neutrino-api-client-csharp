@@ -68,7 +68,7 @@ namespace NeutrinoApi.Examples
                 {
                     var item = locations[i];
 
-                    // The fully formatted address
+                    // The complete address using comma-separated values
                     Console.WriteLine("    address: {0}",
                         item.TryGetProperty("address", out var itemAddress) ? itemAddress.ToString() : "NULL");
 
@@ -123,9 +123,17 @@ namespace NeutrinoApi.Examples
                     Console.WriteLine("    longitude: {0}",
                         item.TryGetProperty("longitude", out var itemLongitude) ? itemLongitude.ToString() : "NULL");
 
+                    // The formatted address using local standards suitable for printing on an envelope
+                    Console.WriteLine("    postal-address: {0}",
+                        item.TryGetProperty("postal-address", out var itemPostalAddress) ? itemPostalAddress.ToString() : "NULL");
+
                     // The postal code for the location
                     Console.WriteLine("    postal-code: {0}",
                         item.TryGetProperty("postal-code", out var itemPostalCode) ? itemPostalCode.ToString() : "NULL");
+
+                    // The ISO 3166-2 region code for the location
+                    Console.WriteLine("    region-code: {0}",
+                        item.TryGetProperty("region-code", out var itemRegionCode) ? itemRegionCode.ToString() : "NULL");
 
                     // The state of the location
                     Console.WriteLine("    state: {0}",

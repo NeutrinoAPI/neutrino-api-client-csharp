@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NeutrinoApi
@@ -26,13 +27,19 @@ namespace NeutrinoApi
         private readonly string _apiKey;
         private readonly string _userId;
         private readonly string _baseUrl;
-
+        
+        private static HttpClient client = new HttpClient();
+        private const int DefaultTimeoutInSeconds = 300;
+        
         /// <summary>NeutrinoApiClient constructor</summary>
         public NeutrinoApiClient(string userId, string apiKey)
         {
             _userId = userId;
             _apiKey = apiKey;
             _baseUrl = MulticloudEndpoint;
+            client.DefaultRequestHeaders.Add("User-ID", _userId);
+            client.DefaultRequestHeaders.Add("Api-Key", _apiKey);
+            client.Timeout = TimeSpan.FromSeconds(DefaultTimeoutInSeconds);
         }
 
         /// <summary>NeutrinoApiClient constructor using base URL override</summary>
@@ -41,6 +48,9 @@ namespace NeutrinoApi
             _userId = userId;
             _apiKey = apiKey;
             _baseUrl = baseUrl;
+            client.DefaultRequestHeaders.Add("User-ID", _userId);
+            client.DefaultRequestHeaders.Add("Api-Key", _apiKey);
+            client.Timeout = TimeSpan.FromSeconds(DefaultTimeoutInSeconds);
         }
 
         /// <summary>Detect bad words, swear words and profanity in a given text</summary>
@@ -504,8 +514,12 @@ namespace NeutrinoApi
         ///         <description>The parameters this Api accepts are:</description>
         ///     </listheader>
         ///     <item>
+        ///         <term>resize-mode</term>
+        ///         <description>The resize mode to use</description>
+        ///     </item>
+        ///     <item>
         ///         <term>width</term>
-        ///         <description>The width to resize to (in px) while preserving aspect ratio</description>
+        ///         <description>The width to resize to (in px)</description>
         ///     </item>
         ///     <item>
         ///         <term>format</term>
@@ -513,11 +527,15 @@ namespace NeutrinoApi
         ///     </item>
         ///     <item>
         ///         <term>image-url</term>
-        ///         <description>The URL or Base64 encoded Data URL for the source image (you can also upload an image file directly in which case this field is ignored)</description>
+        ///         <description>The URL or Base64 encoded Data URL for the source image</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>bg-color</term>
+        ///         <description>The image background color in hexadecimal notation (e.g. #0000ff)</description>
         ///     </item>
         ///     <item>
         ///         <term>height</term>
-        ///         <description>The height to resize to (in px) while preserving aspect ratio</description>
+        ///         <description>The height to resize to (in px)</description>
         ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
@@ -536,16 +554,20 @@ namespace NeutrinoApi
         ///         <description>The parameters this Api accepts are:</description>
         ///     </listheader>
         ///     <item>
+        ///         <term>resize-mode</term>
+        ///         <description>The resize mode to use</description>
+        ///     </item>
+        ///     <item>
         ///         <term>format</term>
         ///         <description>The output image format</description>
         ///     </item>
         ///     <item>
         ///         <term>width</term>
-        ///         <description>If set resize the resulting image to this width (in px) while preserving aspect ratio</description>
+        ///         <description>If set resize the resulting image to this width (in px)</description>
         ///     </item>
         ///     <item>
         ///         <term>image-url</term>
-        ///         <description>The URL or Base64 encoded Data URL for the source image (you can also upload an image file directly in which case this field is ignored)</description>
+        ///         <description>The URL or Base64 encoded Data URL for the source image</description>
         ///     </item>
         ///     <item>
         ///         <term>position</term>
@@ -553,15 +575,19 @@ namespace NeutrinoApi
         ///     </item>
         ///     <item>
         ///         <term>watermark-url</term>
-        ///         <description>The URL or Base64 encoded Data URL for the watermark image (you can also upload an image file directly in which case this field is ignored)</description>
+        ///         <description>The URL or Base64 encoded Data URL for the watermark image</description>
         ///     </item>
         ///     <item>
         ///         <term>opacity</term>
         ///         <description>The opacity of the watermark (0 to 100)</description>
         ///     </item>
         ///     <item>
+        ///         <term>bg-color</term>
+        ///         <description>The image background color in hexadecimal notation (e.g. #0000ff)</description>
+        ///     </item>
+        ///     <item>
         ///         <term>height</term>
-        ///         <description>If set resize the resulting image to this height (in px) while preserving aspect ratio</description>
+        ///         <description>If set resize the resulting image to this height (in px)</description>
         ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
@@ -608,7 +634,7 @@ namespace NeutrinoApi
         ///     </item>
         ///     <item>
         ///         <term>include-vpn</term>
-        ///         <description>Include public VPN provider IP addresses</description>
+        ///         <description>Include public VPN provider addresses</description>
         ///     </item>
         ///     <item>
         ///         <term>cidr</term>
@@ -651,7 +677,7 @@ namespace NeutrinoApi
             return ExecRequest("GET", "ip-info", paramDict, default, 10);
         }
 
-        /// <summary>Analyze and extract provider information for an IP address</summary>
+        /// <summary>Execute a realtime network probe against an IPv4 or IPv6 address</summary>
         /// <list type="bullet">
         ///     <listheader>
         ///         <term>Param</term>
@@ -809,41 +835,6 @@ namespace NeutrinoApi
         public ApiResponse QrCode(Dictionary<string, string> paramDict, string outputFilePath)
         {
             return ExecRequest("POST", "qr-code", paramDict, outputFilePath, 20);
-        }
-
-        /// <summary>Send a free-form message to any mobile device via SMS</summary>
-        /// <list type="bullet">
-        ///     <listheader>
-        ///         <term>Param</term>
-        ///         <description>The parameters this Api accepts are:</description>
-        ///     </listheader>
-        ///     <item>
-        ///         <term>number</term>
-        ///         <description>The phone number to send a message to</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>country-code</term>
-        ///         <description>ISO 2-letter country code</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>limit</term>
-        ///         <description>Limit the total number of SMS allowed to the supplied phone number</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>message</term>
-        ///         <description>The SMS message to send</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>limit-ttl</term>
-        ///         <description>Set the TTL in number of days that the 'limit' option will remember a phone number (the default is 1 day and the maximum is 365 days)</description>
-        ///     </item>
-        /// </list>
-        /// <param name="paramDict">The Api request parameters.</param>
-        /// <link>https://www.neutrinoapi.com/api/sms-message</link>
-        /// <returns>Returns an ApiResponse object on success or failure</returns>
-        public ApiResponse SmsMessage(Dictionary<string, string> paramDict)
-        {
-            return ExecRequest("POST", "sms-message", paramDict, default, 30);
         }
 
         /// <summary>Send a unique security code to any mobile device via SMS</summary>
@@ -1016,19 +1007,13 @@ namespace NeutrinoApi
                     {
                         url = $"{_baseUrl}{endpoint}";
                     }
-
                     using (var request = new HttpRequestMessage())
                     {
-                        var client = new HttpClient();
-                        client.Timeout = TimeSpan.FromSeconds(timeoutInSeconds);
-                        client.DefaultRequestHeaders.Add("User-ID", _userId);
-                        client.DefaultRequestHeaders.Add("Api-Key", _apiKey);
                         request.Method = httpMethod.Equals("POST") ? HttpMethod.Post : HttpMethod.Get;
                         request.RequestUri = new Uri(url);
                         if (httpMethod.Equals("POST")) request.Content = encodedParams;
-
-                        using (var responseTask =
-                               client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead))
+                        using (var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutInSeconds)))
+                        using (var responseTask = client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken.Token))
                         {
                             var response = responseTask.Result;
                             var content = response.Content;
@@ -1061,10 +1046,8 @@ namespace NeutrinoApi
                                         ApiErrorCode.ApiGatewayError,
                                         responseTask.Result.Content.ReadAsStringAsync().Result);
                                 }
-
                                 return apiResponse;
                             }
-
                             if (!response.IsSuccessStatusCode)
                             {
                                 ApiResponse apiResponse;
@@ -1083,7 +1066,6 @@ namespace NeutrinoApi
                                     apiResponse = ApiResponse.OfHttpStatus(statusCode, contentType,
                                         ApiErrorCode.ApiGatewayError, rawResponse);
                                 }
-
                                 return apiResponse;
                             }
                         }
@@ -1092,15 +1074,15 @@ namespace NeutrinoApi
             }
             catch (IOException e)
             {
-                return ApiResponse.OfErrorCause(ApiErrorCode.ApiGatewayError, e);
+                return ApiResponse.OfErrorCause(ApiErrorCode.NetworkIoError, e);
             }
             catch (FormatException e)
             {
-                return ApiResponse.OfErrorCause(ApiErrorCode.ApiGatewayError, e);
+                return ApiResponse.OfErrorCause(ApiErrorCode.UrlParsingError, e);
             }
             catch (HttpRequestException e)
             {
-                return ApiResponse.OfErrorCause(ApiErrorCode.ApiGatewayError, e);
+                return ApiResponse.OfErrorCause(ApiErrorCode.NetworkIoError, e);
             }
             catch (ArgumentException e)
             {
@@ -1114,14 +1096,12 @@ namespace NeutrinoApi
                     {
                         return ApiResponse.OfErrorCause(ApiErrorCode.ReadTimeout, ie);
                     }
-
                     if (ie is HttpRequestException)
                     {
                         return ApiResponse.OfErrorCause(ApiErrorCode.TlsProtocolError, ie);
                     }
                 }
             }
-
             return default;
         }
     }

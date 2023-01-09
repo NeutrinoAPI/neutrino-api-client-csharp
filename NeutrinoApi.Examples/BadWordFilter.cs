@@ -25,8 +25,8 @@ namespace NeutrinoApi.Examples
                 //   environments where certain types of bad words are considered OK
                 { "catalog", "strict" },
                 
-                // The content to scan. This can be either a URL to load from, a file upload or an HTML content
-                // string
+                // The content to scan. This can be either a URL to load from, a file upload (multipart/form-data)
+                // or an HTML content string
                 { "content", "https://en.wikipedia.org/wiki/Profanity" }
             };
 

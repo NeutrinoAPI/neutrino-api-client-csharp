@@ -40,7 +40,7 @@ namespace NeutrinoApi.Examples
                 // API request successful, print out the response data
                 Console.WriteLine("API Response OK:");
                 
-                // The fully formatted address
+                // The complete address using comma-separated values
                 Console.WriteLine("address: {0}",
                     data.TryGetProperty("address", out var address) ? address.ToString() : "NULL");
                 
@@ -99,9 +99,17 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("longitude: {0}",
                     data.TryGetProperty("longitude", out var longitude) ? longitude.ToString() : "NULL");
                 
+                // The formatted address using local standards suitable for printing on an envelope
+                Console.WriteLine("postal-address: {0}",
+                    data.TryGetProperty("postal-address", out var postalAddress) ? postalAddress.ToString() : "NULL");
+                
                 // The postal code for the location
                 Console.WriteLine("postal-code: {0}",
                     data.TryGetProperty("postal-code", out var postalCode) ? postalCode.ToString() : "NULL");
+                
+                // The ISO 3166-2 region code for the location
+                Console.WriteLine("region-code: {0}",
+                    data.TryGetProperty("region-code", out var regionCode) ? regionCode.ToString() : "NULL");
                 
                 // The state of the location
                 Console.WriteLine("state: {0}",

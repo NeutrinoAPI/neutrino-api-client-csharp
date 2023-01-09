@@ -83,9 +83,6 @@ namespace NeutrinoApi.Examples
                 case "QrCode":
                     QrCode.ExecRequest();
                     break;
-                case "SmsMessage":
-                    SmsMessage.ExecRequest();
-                    break;
                 case "SmsVerify":
                     SmsVerify.ExecRequest();
                     break;
