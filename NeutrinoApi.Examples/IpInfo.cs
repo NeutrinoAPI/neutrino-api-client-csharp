@@ -93,7 +93,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("region-code: {0}",
                     data.TryGetProperty("region-code", out var regionCode) ? regionCode.ToString() : "NULL");
                 
-                // Map containing timezone details for the location
+                // Map containing timezone details
                 Console.WriteLine("timezone: {0}",
                     data.TryGetProperty("timezone", out var timezone) ? timezone.ToString() : "NULL");
                 

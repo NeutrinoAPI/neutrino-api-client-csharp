@@ -29,6 +29,9 @@ namespace NeutrinoApi.Examples
                 case "Convert":
                     Convert.ExecRequest();
                     break;
+                case "DomainLookup":
+                    DomainLookup.ExecRequest();
+                    break;
                 case "EmailValidate":
                     EmailValidate.ExecRequest();
                     break;

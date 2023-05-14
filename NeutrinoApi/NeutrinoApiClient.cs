@@ -197,6 +197,29 @@ namespace NeutrinoApi
             return ExecRequest("GET", "convert", paramDict, default, 10);
         }
 
+        /// <summary>Retrieve domain name details and detect potentially malicious or dangerous domains</summary>
+        /// <list type="bullet">
+        ///     <listheader>
+        ///         <term>Param</term>
+        ///         <description>The parameters this Api accepts are:</description>
+        ///     </listheader>
+        ///     <item>
+        ///         <term>host</term>
+        ///         <description>A domain name</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>live</term>
+        ///         <description>For domains that we have never seen before then perform various live checks and realtime reconnaissance</description>
+        ///     </item>
+        /// </list>
+        /// <param name="paramDict">The Api request parameters.</param>
+        /// <link>https://www.neutrinoapi.com/api/domain-lookup</link>
+        /// <returns>Returns an ApiResponse object on success or failure</returns>
+        public ApiResponse DomainLookup(Dictionary<string, string> paramDict)
+        {
+            return ExecRequest("GET", "domain-lookup", paramDict, default, 120);
+        }
+
         /// <summary>Parse, validate and clean an email address</summary>
         /// <list type="bullet">
         ///     <listheader>
