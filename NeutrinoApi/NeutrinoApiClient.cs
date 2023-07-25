@@ -517,6 +517,10 @@ namespace NeutrinoApi
         ///         <description>The document bottom margin (in mm)</description>
         ///     </item>
         ///     <item>
+        ///         <term>bg-color</term>
+        ///         <description>For image rendering set the background color in hexadecimal notation (e.g. #0000ff)</description>
+        ///     </item>
+        ///     <item>
         ///         <term>landscape</term>
         ///         <description>Set the document to landscape orientation</description>
         ///     </item>
@@ -889,6 +893,10 @@ namespace NeutrinoApi
         ///     <item>
         ///         <term>limit</term>
         ///         <description>Limit the total number of SMS allowed to the supplied phone number</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>brand-name</term>
+        ///         <description>Set a custom brand or product name in the verification message</description>
         ///     </item>
         ///     <item>
         ///         <term>limit-ttl</term>
