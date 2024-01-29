@@ -31,6 +31,14 @@ namespace NeutrinoApi.Examples
                 // API request successful, print out the response data
                 Console.WriteLine("API Response OK:");
                 
+                // The full name of the type being converted from
+                Console.WriteLine("from-name: {0}",
+                    data.TryGetProperty("from-name", out var fromName) ? fromName.ToString() : "NULL");
+                
+                // The standard UTF-8 symbol used to represent the type being converted from
+                Console.WriteLine("from-symbol: {0}",
+                    data.TryGetProperty("from-symbol", out var fromSymbol) ? fromSymbol.ToString() : "NULL");
+                
                 // The type of the value being converted from
                 Console.WriteLine("from-type: {0}",
                     data.TryGetProperty("from-type", out var fromType) ? fromType.ToString() : "NULL");
@@ -46,6 +54,14 @@ namespace NeutrinoApi.Examples
                 // The result of the conversion as a floating-point number
                 Console.WriteLine("result-float: {0}",
                     data.TryGetProperty("result-float", out var resultFloat) ? resultFloat.ToString() : "NULL");
+                
+                // The full name of the type being converted to
+                Console.WriteLine("to-name: {0}",
+                    data.TryGetProperty("to-name", out var toName) ? toName.ToString() : "NULL");
+                
+                // The standard UTF-8 symbol used to represent the type being converted to
+                Console.WriteLine("to-symbol: {0}",
+                    data.TryGetProperty("to-symbol", out var toSymbol) ? toSymbol.ToString() : "NULL");
                 
                 // The type being converted to
                 Console.WriteLine("to-type: {0}",

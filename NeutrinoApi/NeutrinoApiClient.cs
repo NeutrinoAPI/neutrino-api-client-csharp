@@ -94,6 +94,14 @@ namespace NeutrinoApi
         ///         <term>include-8digit</term>
         ///         <description>Include 8-digit and higher BIN codes</description>
         ///     </item>
+        ///     <item>
+        ///         <term>include-all</term>
+        ///         <description>Include all BINs and all available fields in the CSV file (overrides any values set for 'include-iso3' or 'include-8digit')</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>output-encoding</term>
+        ///         <description>Set this option to 'gzip' to have the output file compressed using gzip</description>
+        ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
         /// <param name="outputFilePath">Location on disk to store the response.</param>
@@ -660,16 +668,24 @@ namespace NeutrinoApi
         ///         <description>The data format</description>
         ///     </item>
         ///     <item>
-        ///         <term>include-vpn</term>
-        ///         <description>Include public VPN provider addresses</description>
-        ///     </item>
-        ///     <item>
         ///         <term>cidr</term>
         ///         <description>Output IPs using CIDR notation</description>
         ///     </item>
         ///     <item>
         ///         <term>ip6</term>
         ///         <description>Output the IPv6 version of the blocklist</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>category</term>
+        ///         <description>The category of IP addresses to include in the download file</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>output-encoding</term>
+        ///         <description>Set this option to 'gzip' to have the output file compressed using gzip</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>checksum</term>
+        ///         <description>Do not download the file but just return the current files MurmurHash3 checksum</description>
         ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>

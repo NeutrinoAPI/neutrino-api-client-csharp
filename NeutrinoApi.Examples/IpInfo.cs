@@ -61,7 +61,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("hostname: {0}",
                     data.TryGetProperty("hostname", out var hostname) ? hostname.ToString() : "NULL");
                 
-                // The IP address
+                // An IPv4 or IPv6 address. Accepts standard IP notation and also CIDR notation.
                 Console.WriteLine("ip: {0}",
                     data.TryGetProperty("ip", out var ip) ? ip.ToString() : "NULL");
                 

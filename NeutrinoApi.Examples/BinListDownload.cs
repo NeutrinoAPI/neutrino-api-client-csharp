@@ -21,7 +21,14 @@ namespace NeutrinoApi.Examples
                 
                 // Include 8-digit and higher BIN codes. This option includes all 6-digit BINs and all 8-digit and
                 // higher BINs (including some 9, 10 and 11 digit BINs where available)
-                { "include-8digit", "false" }
+                { "include-8digit", "false" },
+                
+                // Include all BINs and all available fields in the CSV file (overrides any values set for
+                // 'include-iso3' or 'include-8digit')
+                { "include-all", "false" },
+                
+                // Set this option to 'gzip' to have the output file compressed using gzip
+                { "output-encoding", "" }
             };
 
             var response = neutrinoApiClient.BinListDownload(parameters, outputFilePath);
