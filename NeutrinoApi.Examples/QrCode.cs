@@ -15,6 +15,9 @@ namespace NeutrinoApi.Examples
             var parameters = new Dictionary<string, string>
             {
                 
+                // The barcode format to output. Accepted formats are: qr, c128
+                { "code-format", "qr" },
+                
                 // The width of the QR code (in px)
                 { "width", "256" },
                 

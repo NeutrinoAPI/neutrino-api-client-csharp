@@ -56,10 +56,35 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("content: {0}",
                     data.TryGetProperty("content", out var content) ? content.ToString() : "NULL");
                 
-                // Array containing all the elements matching the supplied selector. Each element object will
-                // contain the text content, HTML content and all current element attributes
-                Console.WriteLine("elements: {0}",
-                    data.TryGetProperty("elements", out var elements) ? elements.ToString() : "NULL");
+                // Array containing all the elements matching the supplied selector
+                var elements = data.GetProperty("elements");
+                Console.WriteLine("elements:");
+                for (var i = 0; i < elements.GetArrayLength(); i++)
+                {
+                    var item = elements[i];
+
+                    // The 'class' attribute of the element
+                    Console.WriteLine("    class: {0}",
+                        item.TryGetProperty("class", out var itemClass) ? itemClass.ToString() : "NULL");
+
+                    // The 'href' attribute of the element
+                    Console.WriteLine("    href: {0}",
+                        item.TryGetProperty("href", out var itemHref) ? itemHref.ToString() : "NULL");
+
+                    // The raw HTML of the element
+                    Console.WriteLine("    html: {0}",
+                        item.TryGetProperty("html", out var itemHtml) ? itemHtml.ToString() : "NULL");
+
+                    // The 'id' attribute of the element
+                    Console.WriteLine("    id: {0}",
+                        item.TryGetProperty("id", out var itemId) ? itemId.ToString() : "NULL");
+
+                    // The plain-text content of the element with normalized whitespace
+                    Console.WriteLine("    text: {0}",
+                        item.TryGetProperty("text", out var itemText) ? itemText.ToString() : "NULL");
+
+                    Console.WriteLine();
+                }
                 
                 // Contains the error message if an error has occurred ('is-error' will be true)
                 Console.WriteLine("error-message: {0}",

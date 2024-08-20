@@ -13,7 +13,7 @@ namespace NeutrinoApi.Examples
             var parameters = new Dictionary<string, string>
             {
                 
-                // IPv4 or IPv6 address
+                // An IPv4 or IPv6 address. Accepts standard IP notation and also CIDR notation
                 { "ip", "1.1.1.1" },
                 
                 // Do a reverse DNS (PTR) lookup. This option can add extra delay to the request so only use it if
@@ -61,7 +61,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("hostname: {0}",
                     data.TryGetProperty("hostname", out var hostname) ? hostname.ToString() : "NULL");
                 
-                // An IPv4 or IPv6 address. Accepts standard IP notation and also CIDR notation.
+                // The IPv4 or IPv6 address returned
                 Console.WriteLine("ip: {0}",
                     data.TryGetProperty("ip", out var ip) ? ip.ToString() : "NULL");
                 
@@ -93,7 +93,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("region-code: {0}",
                     data.TryGetProperty("region-code", out var regionCode) ? regionCode.ToString() : "NULL");
                 
-                // Map containing timezone details
+                // Structure of a valid ip-info -> timezone response
                 Console.WriteLine("timezone: {0}",
                     data.TryGetProperty("timezone", out var timezone) ? timezone.ToString() : "NULL");
                 

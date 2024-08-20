@@ -15,7 +15,7 @@ namespace NeutrinoApi.Examples
                 
                 // The BIN or IIN number. This is the first 6, 8 or 10 digits of a card number, use 8 (or more)
                 // digits for the highest level of accuracy
-                { "bin-number", "47192100" },
+                { "bin-number", "48334884" },
                 
                 // Pass in the customers IP address and we will return some extra information about them
                 { "customer-ip", "" }
@@ -29,7 +29,8 @@ namespace NeutrinoApi.Examples
                 // API request successful, print out the response data
                 Console.WriteLine("API Response OK:");
                 
-                // The BIN or IIN number
+                // The BIN number returned. You may count the number of digits in this field to determine if the BIN
+                // is likely to be based on an 8-digit or 6-digit card
                 Console.WriteLine("bin-number: {0}",
                     data.TryGetProperty("bin-number", out var binNumber) ? binNumber.ToString() : "NULL");
                 

@@ -13,7 +13,7 @@ namespace NeutrinoApi.Examples
             var parameters = new Dictionary<string, string>
             {
                 
-                // IPv4 or IPv6 address
+                // An IPv4 or IPv6 address. Accepts standard IP notation and also CIDR notation
                 { "ip", "194.233.98.38" }
             };
 
@@ -85,7 +85,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("hostname: {0}",
                     data.TryGetProperty("hostname", out var hostname) ? hostname.ToString() : "NULL");
                 
-                // The IP address
+                // The IPv4 or IPv6 address returned
                 Console.WriteLine("ip: {0}",
                     data.TryGetProperty("ip", out var ip) ? ip.ToString() : "NULL");
                 
@@ -103,7 +103,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("is-isp: {0}",
                     data.TryGetProperty("is-isp", out var isIsp) ? isIsp.ToString() : "NULL");
                 
-                // True if this IP ia a proxy
+                // True if this IP is a proxy
                 Console.WriteLine("is-proxy: {0}",
                     data.TryGetProperty("is-proxy", out var isProxy) ? isProxy.ToString() : "NULL");
                 

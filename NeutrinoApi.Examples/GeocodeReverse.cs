@@ -115,7 +115,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("state: {0}",
                     data.TryGetProperty("state", out var state) ? state.ToString() : "NULL");
                 
-                // Map containing timezone details
+                // Structure of a valid ip-info -> timezone response
                 Console.WriteLine("timezone: {0}",
                     data.TryGetProperty("timezone", out var timezone) ? timezone.ToString() : "NULL");
             }

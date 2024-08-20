@@ -1,6 +1,6 @@
 # NeutrinoAPI C# Native SDK
 
-C# client using the native HTTP client
+Neutrino API C# client using the native HTTP library
 
 The official API client and SDK built by [NeutrinoAPI](https://www.neutrinoapi.com/)
 
@@ -11,7 +11,7 @@ The official API client and SDK built by [NeutrinoAPI](https://www.neutrinoapi.c
 | JSON Library     | Native |
 | HTTP/2           | No     |
 | HTTP/3           | No     |
-| CodeGen Version  | 4.6.13 |
+| CodeGen Version  | 4.6.15 |
 
 ## Getting started
 
@@ -30,6 +30,8 @@ var neutrinoApiClient = new NeutrinoApiClient("<your-user-id>", "<your-api-key>"
 * Click Run (F5), the default example is IpInfo
 
 You can find examples of all APIs in _NeutrinoApi.Examples_
+
+Set the __'your-user-id'__ and __'your-api-key'__ values in the example to retrieve real API responses
 
 ## For Support 
 [Contact Us](https://www.neutrinoapi.com/contact-us/)

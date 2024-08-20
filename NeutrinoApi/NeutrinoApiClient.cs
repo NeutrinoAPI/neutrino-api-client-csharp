@@ -15,14 +15,14 @@ namespace NeutrinoApi
     /// <summary>Make a request to the Neutrino API</summary>
     public class NeutrinoApiClient
     {
-        /// <summary>MulticloudEndpoint server</summary>
-        public const string MulticloudEndpoint = "https://neutrinoapi.net/";
-        /// <summary>AwsEndpoint server</summary>
-        public const string AwsEndpoint = "https://aws.neutrinoapi.net/";
-        /// <summary>GcpEndpoint server</summary>
-        public const string GcpEndpoint = "https://gcp.neutrinoapi.net/";
-        /// <summary>MsAzureEndpoint server</summary>
-        public const string MsAzureEndpoint = "https://msa.neutrinoapi.net/";
+        /// <summary>Multicloud server</summary>
+        public const string Multicloud = "https://neutrinoapi.net/";
+        /// <summary>Aws server</summary>
+        public const string Aws = "https://aws.neutrinoapi.net/";
+        /// <summary>Gcp server</summary>
+        public const string Gcp = "https://gcp.neutrinoapi.net/";
+        /// <summary>Backup server</summary>
+        public const string Backup = "https://neutrinoapi.com/";
         
         private readonly string _apiKey;
         private readonly string _userId;
@@ -36,7 +36,7 @@ namespace NeutrinoApi
         {
             _userId = userId;
             _apiKey = apiKey;
-            _baseUrl = MulticloudEndpoint;
+            _baseUrl = Multicloud;
             client.DefaultRequestHeaders.Add("User-ID", _userId);
             client.DefaultRequestHeaders.Add("Api-Key", _apiKey);
             client.Timeout = TimeSpan.FromSeconds(DefaultTimeoutInSeconds);
@@ -441,28 +441,12 @@ namespace NeutrinoApi
         ///         <description>The parameters this Api accepts are:</description>
         ///     </listheader>
         ///     <item>
-        ///         <term>margin</term>
-        ///         <description>The document margin (in mm)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>css</term>
         ///         <description>Inject custom CSS into the HTML</description>
         ///     </item>
         ///     <item>
-        ///         <term>image-width</term>
-        ///         <description>If rendering to an image format (PNG or JPG) use this image width (in pixels)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>footer</term>
         ///         <description>The footer HTML to insert into each page</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>format</term>
-        ///         <description>Which format to output</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>zoom</term>
-        ///         <description>Set the zoom factor when rendering the page (2.0 for double size</description>
         ///     </item>
         ///     <item>
         ///         <term>title</term>
@@ -481,10 +465,6 @@ namespace NeutrinoApi
         ///         <description>Timeout in seconds</description>
         ///     </item>
         ///     <item>
-        ///         <term>margin-right</term>
-        ///         <description>The document right margin (in mm)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>grayscale</term>
         ///         <description>Render the final document in grayscale</description>
         ///     </item>
@@ -497,16 +477,44 @@ namespace NeutrinoApi
         ///         <description>Set the document page size</description>
         ///     </item>
         ///     <item>
-        ///         <term>delay</term>
-        ///         <description>Number of seconds to wait before rendering the page (can be useful for pages with animations etc)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>ignore-certificate-errors</term>
         ///         <description>Ignore any TLS/SSL certificate errors</description>
         ///     </item>
         ///     <item>
         ///         <term>page-height</term>
         ///         <description>Set the PDF page height explicitly (in mm)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>margin-top</term>
+        ///         <description>The document top margin (in mm)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>bg-color</term>
+        ///         <description>For image rendering set the background color in hexadecimal notation (e.g. #0000ff)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>margin</term>
+        ///         <description>The document margin (in mm)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>image-width</term>
+        ///         <description>If rendering to an image format (PNG or JPG) use this image width (in pixels)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>format</term>
+        ///         <description>Which format to output</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>zoom</term>
+        ///         <description>Set the zoom factor when rendering the page (2.0 for double size</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>margin-right</term>
+        ///         <description>The document right margin (in mm)</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>delay</term>
+        ///         <description>Number of seconds to wait before rendering the page (can be useful for pages with animations etc)</description>
         ///     </item>
         ///     <item>
         ///         <term>image-height</term>
@@ -517,20 +525,20 @@ namespace NeutrinoApi
         ///         <description>The header HTML to insert into each page</description>
         ///     </item>
         ///     <item>
-        ///         <term>margin-top</term>
-        ///         <description>The document top margin (in mm)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>margin-bottom</term>
         ///         <description>The document bottom margin (in mm)</description>
         ///     </item>
         ///     <item>
-        ///         <term>bg-color</term>
-        ///         <description>For image rendering set the background color in hexadecimal notation (e.g. #0000ff)</description>
-        ///     </item>
-        ///     <item>
         ///         <term>landscape</term>
         ///         <description>Set the document to landscape orientation</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>exec</term>
+        ///         <description>Execute JavaScript on the website</description>
+        ///     </item>
+        ///     <item>
+        ///         <term>user-agent</term>
+        ///         <description>Override the browsers default user-agent string with this one</description>
         ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
@@ -705,7 +713,7 @@ namespace NeutrinoApi
         ///     </listheader>
         ///     <item>
         ///         <term>ip</term>
-        ///         <description>IPv4 or IPv6 address</description>
+        ///         <description>An IPv4 or IPv6 address</description>
         ///     </item>
         ///     <item>
         ///         <term>reverse-lookup</term>
@@ -728,7 +736,7 @@ namespace NeutrinoApi
         ///     </listheader>
         ///     <item>
         ///         <term>ip</term>
-        ///         <description>IPv4 or IPv6 address</description>
+        ///         <description>An IPv4 or IPv6 address</description>
         ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
@@ -850,6 +858,10 @@ namespace NeutrinoApi
         ///         <term>Param</term>
         ///         <description>The parameters this Api accepts are:</description>
         ///     </listheader>
+        ///     <item>
+        ///         <term>code-format</term>
+        ///         <description>The barcode format to output</description>
+        ///     </item>
         ///     <item>
         ///         <term>width</term>
         ///         <description>The width of the QR code (in px)</description>
