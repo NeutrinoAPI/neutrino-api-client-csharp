@@ -3,7 +3,7 @@
         <OutputType>Library</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageVersion>4.6.15</PackageVersion>
+        <PackageVersion>4.6.16</PackageVersion>
         <AssemblyName>NeutrinoApi</AssemblyName>
         <RootNamespace>NeutrinoApi</RootNamespace>
     </PropertyGroup>

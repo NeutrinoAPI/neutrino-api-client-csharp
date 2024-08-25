@@ -15,14 +15,14 @@ namespace NeutrinoApi
     /// <summary>Make a request to the Neutrino API</summary>
     public class NeutrinoApiClient
     {
-        /// <summary>Multicloud server</summary>
-        public const string Multicloud = "https://neutrinoapi.net/";
-        /// <summary>Aws server</summary>
-        public const string Aws = "https://aws.neutrinoapi.net/";
-        /// <summary>Gcp server</summary>
-        public const string Gcp = "https://gcp.neutrinoapi.net/";
-        /// <summary>Backup server</summary>
-        public const string Backup = "https://neutrinoapi.com/";
+        /// <summary>MulticloudEndpoint server</summary>
+        public const string MulticloudEndpoint = "https://neutrinoapi.net/";
+        /// <summary>AwsEndpoint server</summary>
+        public const string AwsEndpoint = "https://aws.neutrinoapi.net/";
+        /// <summary>GcpEndpoint server</summary>
+        public const string GcpEndpoint = "https://gcp.neutrinoapi.net/";
+        /// <summary>BackupEndpoint server</summary>
+        public const string BackupEndpoint = "https://neutrinoapi.com/";
         
         private readonly string _apiKey;
         private readonly string _userId;
@@ -36,7 +36,7 @@ namespace NeutrinoApi
         {
             _userId = userId;
             _apiKey = apiKey;
-            _baseUrl = Multicloud;
+            _baseUrl = MulticloudEndpoint;
             client.DefaultRequestHeaders.Add("User-ID", _userId);
             client.DefaultRequestHeaders.Add("Api-Key", _apiKey);
             client.Timeout = TimeSpan.FromSeconds(DefaultTimeoutInSeconds);

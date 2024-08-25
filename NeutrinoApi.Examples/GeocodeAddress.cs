@@ -139,7 +139,7 @@ namespace NeutrinoApi.Examples
                     Console.WriteLine("    state: {0}",
                         item.TryGetProperty("state", out var itemState) ? itemState.ToString() : "NULL");
 
-                    // Structure of a valid ip-info -> timezone response
+                    // Structure of a ip-info -> timezone response
                     Console.WriteLine("    timezone: {0}",
                         item.TryGetProperty("timezone", out var itemTimezone) ? itemTimezone.ToString() : "NULL");
 

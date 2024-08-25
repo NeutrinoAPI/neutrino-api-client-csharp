@@ -56,6 +56,10 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("content: {0}",
                     data.TryGetProperty("content", out var content) ? content.ToString() : "NULL");
                 
+                // The size of the returned content in bytes
+                Console.WriteLine("content-size: {0}",
+                    data.TryGetProperty("content-size", out var contentSize) ? contentSize.ToString() : "NULL");
+                
                 // Array containing all the elements matching the supplied selector
                 var elements = data.GetProperty("elements");
                 Console.WriteLine("elements:");
@@ -91,8 +95,22 @@ namespace NeutrinoApi.Examples
                     data.TryGetProperty("error-message", out var errorMessage) ? errorMessage.ToString() : "NULL");
                 
                 // If you executed any JavaScript this array holds the results as objects
-                Console.WriteLine("exec-results: {0}",
-                    data.TryGetProperty("exec-results", out var execResults) ? execResults.ToString() : "NULL");
+                var exec-results = data.GetProperty("exec-results");
+                Console.WriteLine("exec-results:");
+                for (var i = 0; i < exec-results.GetArrayLength(); i++)
+                {
+                    var item = exec-results[i];
+
+                    // The result of the executed JavaScript statement. Will be empty if the statement returned nothing
+                    Console.WriteLine("    result: {0}",
+                        item.TryGetProperty("result", out var itemResult) ? itemResult.ToString() : "NULL");
+
+                    // The JavaScript statement that was executed
+                    Console.WriteLine("    statement: {0}",
+                        item.TryGetProperty("statement", out var itemStatement) ? itemStatement.ToString() : "NULL");
+
+                    Console.WriteLine();
+                }
                 
                 // The redirected URL if the URL responded with an HTTP redirect
                 Console.WriteLine("http-redirect-url: {0}",
@@ -148,6 +166,10 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("security-details: {0}",
                     data.TryGetProperty("security-details", out var securityDetails) ? securityDetails.ToString() : "NULL");
                 
+                // The HTTP servers hostname (PTR/RDNS record)
+                Console.WriteLine("server-hostname: {0}",
+                    data.TryGetProperty("server-hostname", out var serverHostname) ? serverHostname.ToString() : "NULL");
+                
                 // The HTTP servers IP address
                 Console.WriteLine("server-ip: {0}",
                     data.TryGetProperty("server-ip", out var serverIp) ? serverIp.ToString() : "NULL");
@@ -156,9 +178,18 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("title: {0}",
                     data.TryGetProperty("title", out var title) ? title.ToString() : "NULL");
                 
-                // The page URL
+                // The requested URL. This may not be the same as the final destination URL, if the URL redirects
+                // then it will be set in 'http-redirect-url' and 'is-http-redirect' will also be true
                 Console.WriteLine("url: {0}",
                     data.TryGetProperty("url", out var url) ? url.ToString() : "NULL");
+                
+                // Structure of a browser-bot -> url-components response
+                Console.WriteLine("url-components: {0}",
+                    data.TryGetProperty("url-components", out var urlComponents) ? urlComponents.ToString() : "NULL");
+                
+                // True if the URL supplied is valid
+                Console.WriteLine("url-valid: {0}",
+                    data.TryGetProperty("url-valid", out var urlValid) ? urlValid.ToString() : "NULL");
             }
             else
             {
