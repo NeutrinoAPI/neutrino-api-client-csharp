@@ -115,6 +115,11 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("msin: {0}",
                     data.TryGetProperty("msin", out var msin) ? msin.ToString() : "NULL");
                 
+                // Contains any additional details about the current network such as former network names and mobile
+                // technology utilized
+                Console.WriteLine("network-tags: {0}",
+                    data.TryGetProperty("network-tags", out var networkTags) ? networkTags.ToString() : "NULL");
+                
                 // The number type, possible values are:
                 // • mobile
                 // • fixed-line

@@ -11,7 +11,7 @@ namespace NeutrinoApi.Examples
         public static void ExecRequest()
         {
             var neutrinoApiClient = new NeutrinoApiClient("<your-user-id>", "<your-api-key>");
-            var outputFilePath = $"{Path.GetTempPath()}bin-list-download_{Guid.NewGuid().ToString()}.png";
+            var outputFilePath = $"{Path.GetTempPath()}bin-list-download_{Guid.NewGuid().ToString()}.csv";
             var parameters = new Dictionary<string, string>
             {
                 

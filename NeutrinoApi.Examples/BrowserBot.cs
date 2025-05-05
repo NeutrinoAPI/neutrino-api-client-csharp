@@ -95,11 +95,11 @@ namespace NeutrinoApi.Examples
                     data.TryGetProperty("error-message", out var errorMessage) ? errorMessage.ToString() : "NULL");
                 
                 // If you executed any JavaScript this array holds the results as objects
-                var exec-results = data.GetProperty("exec-results");
+                var execResults = data.GetProperty("exec-results");
                 Console.WriteLine("exec-results:");
-                for (var i = 0; i < exec-results.GetArrayLength(); i++)
+                for (var i = 0; i < execResults.GetArrayLength(); i++)
                 {
-                    var item = exec-results[i];
+                    var item = execResults[i];
 
                     // The result of the executed JavaScript statement. Will be empty if the statement returned nothing
                     Console.WriteLine("    result: {0}",
@@ -183,7 +183,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("url: {0}",
                     data.TryGetProperty("url", out var url) ? url.ToString() : "NULL");
                 
-                // Structure of a browser-bot -> url-components response
+                // Structure of url-components
                 Console.WriteLine("url-components: {0}",
                     data.TryGetProperty("url-components", out var urlComponents) ? urlComponents.ToString() : "NULL");
                 

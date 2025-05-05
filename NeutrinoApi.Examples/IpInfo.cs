@@ -77,6 +77,10 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("is-v6: {0}",
                     data.TryGetProperty("is-v6", out var isV6) ? isV6.ToString() : "NULL");
                 
+                // The ISO 2-letter language code for the official language spoken in the country
+                Console.WriteLine("language-code: {0}",
+                    data.TryGetProperty("language-code", out var languageCode) ? languageCode.ToString() : "NULL");
+                
                 // Location latitude
                 Console.WriteLine("latitude: {0}",
                     data.TryGetProperty("latitude", out var latitude) ? latitude.ToString() : "NULL");
@@ -93,7 +97,7 @@ namespace NeutrinoApi.Examples
                 Console.WriteLine("region-code: {0}",
                     data.TryGetProperty("region-code", out var regionCode) ? regionCode.ToString() : "NULL");
                 
-                // Structure of a ip-info -> timezone response
+                // Structure of timezone
                 Console.WriteLine("timezone: {0}",
                     data.TryGetProperty("timezone", out var timezone) ? timezone.ToString() : "NULL");
                 

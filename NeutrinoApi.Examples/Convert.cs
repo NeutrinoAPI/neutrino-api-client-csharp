@@ -20,7 +20,13 @@ namespace NeutrinoApi.Examples
                 { "from-type", "USD" },
                 
                 // The type to convert to (e.g. EUR)
-                { "to-type", "EUR" }
+                { "to-type", "EUR" },
+                
+                // Convert using the rate on a historical date, accepted date formats are: YYYY-MM-DD, YYYY-MM,
+                // YYYY. Historical rates are stored with daily granularity so the date format YYYY-MM-DD is
+                // preferred for the highest precision. If an invalid date or a date too far into the past is
+                // supplied then the API will respond with 'valid' as false and an empty 'historical-date'
+                { "historical-date", "" }
             };
 
             var response = neutrinoApiClient.Convert(parameters);
@@ -46,6 +52,11 @@ namespace NeutrinoApi.Examples
                 // The value being converted from
                 Console.WriteLine("from-value: {0}",
                     data.TryGetProperty("from-value", out var fromValue) ? fromValue.ToString() : "NULL");
+                
+                // If a historical conversion was made using the 'historical-date' request option this will contain
+                // the exact date used for the conversion in ISO format: YYYY-MM-DD
+                Console.WriteLine("historical-date: {0}",
+                    data.TryGetProperty("historical-date", out var historicalDate) ? historicalDate.ToString() : "NULL");
                 
                 // The result of the conversion in string format
                 Console.WriteLine("result: {0}",

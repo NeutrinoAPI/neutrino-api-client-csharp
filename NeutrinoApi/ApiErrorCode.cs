@@ -75,6 +75,15 @@ namespace NeutrinoApi
         /// <summary>BatchInvalid</summary>
         public const int BatchInvalid = 24;
 
+        /// <summary>DatasetUnknown</summary>
+        public const int DatasetUnknown = 26;
+
+        /// <summary>DatasetGenerationFailed</summary>
+        public const int DatasetGenerationFailed = 27;
+
+        /// <summary>DatasetInvalidDate</summary>
+        public const int DatasetInvalidDate = 28;
+
         /// <summary>UserDefinedDailyLimit</summary>
         public const int UserDefinedDailyLimit = 31;
 
@@ -158,6 +167,9 @@ namespace NeutrinoApi
                 case NoBatchMode: return "BATCH PROCESSING NOT AVAILABLE ON YOUR PLAN";
                 case BatchLimitExceeded: return "BATCH PROCESSING REQUEST LIMIT EXCEEDED";
                 case BatchInvalid: return "INVALID BATCH REQUEST. DOES NOT CONFORM TO SPEC";
+                case DatasetUnknown: return "UNKNOWN DATASET ID OR INVALID DATASET OPTION SUPPLIED";
+                case DatasetGenerationFailed: return "FAILED TO GENERATE DATASET OUTPUT FILE";
+                case DatasetInvalidDate: return "INVALID DATE SUPPLIED OR DATE IS BEFORE FIRST HISTORICAL RECORD";
                 case UserDefinedDailyLimit: return "DAILY API LIMIT EXCEEDED. SET BY ACCOUNT HOLDER";
                 case AccessForbidden: return "ACCESS DENIED. USER ID OR API KEY INVALID";
                 case RequestTooLarge: return "REQUEST TOO LARGE. MAXIMUM SIZE IS 5MB FOR DATA AND 25MB FOR UPLOADS";

@@ -11,7 +11,7 @@ The official API client and SDK built by [NeutrinoAPI](https://www.neutrinoapi.c
 | JSON Library     | Native |
 | HTTP/2           | No     |
 | HTTP/3           | No     |
-| CodeGen Version  | 4.6.16 |
+| CodeGen Version  | 4.7.1  |
 
 ## Getting started
 
@@ -45,5 +45,5 @@ $ dotnet exec <path-to-dotnet-sdk>/MSBuild.dll
 ## Running Examples on Linux/CLI
 
 ```sh
-$  dotnet NeutrinoApi.Examples/bin/Debug/netcoreapp2.1/NeutrinoApi.Examples.dll IpInfo
+$  dotnet NeutrinoApi.Examples/bin/Debug/net6.0/NeutrinoApi.Examples.dll IpInfo
 ```

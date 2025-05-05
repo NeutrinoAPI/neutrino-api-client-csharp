@@ -23,6 +23,12 @@ namespace NeutrinoApi
         public const string GcpEndpoint = "https://gcp.neutrinoapi.net/";
         /// <summary>BackupEndpoint server</summary>
         public const string BackupEndpoint = "https://neutrinoapi.com/";
+        /// <summary>EuGeofenceEndpoint server</summary>
+        public const string EuGeofenceEndpoint = "https://eu.neutrinoapi.net/";
+        /// <summary>AuGeofenceEndpoint server</summary>
+        public const string AuGeofenceEndpoint = "https://aus.neutrinoapi.net/";
+        /// <summary>UsGeofenceEndpoint server</summary>
+        public const string UsGeofenceEndpoint = "https://usa.neutrinoapi.net/";
         
         private readonly string _apiKey;
         private readonly string _userId;
@@ -196,6 +202,10 @@ namespace NeutrinoApi
         ///         <term>to-type</term>
         ///         <description>The type to convert to (e.g. EUR)</description>
         ///     </item>
+        ///     <item>
+        ///         <term>historical-date</term>
+        ///         <description>Convert using the rate on a historical date</description>
+        ///     </item>
         /// </list>
         /// <param name="paramDict">The Api request parameters.</param>
         /// <link>https://www.neutrinoapi.com/api/convert</link>
@@ -225,7 +235,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse DomainLookup(Dictionary<string, string> paramDict)
         {
-            return ExecRequest("GET", "domain-lookup", paramDict, default, 120);
+            return ExecRequest("GET", "domain-lookup", paramDict, default, 300);
         }
 
         /// <summary>Parse, validate and clean an email address</summary>
@@ -271,7 +281,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse EmailVerify(Dictionary<string, string> paramDict)
         {
-            return ExecRequest("GET", "email-verify", paramDict, default, 120);
+            return ExecRequest("GET", "email-verify", paramDict, default, 300);
         }
 
         /// <summary>Geocode an address, partial address or just the name of a place</summary>
@@ -407,7 +417,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse HostReputation(Dictionary<string, string> paramDict)
         {
-            return ExecRequest("GET", "host-reputation", paramDict, default, 120);
+            return ExecRequest("GET", "host-reputation", paramDict, default, 300);
         }
 
         /// <summary>Clean and sanitize untrusted HTML</summary>
@@ -587,7 +597,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse ImageResize(Dictionary<string, string> paramDict, string outputFilePath)
         {
-            return ExecRequest("POST", "image-resize", paramDict, outputFilePath, 20);
+            return ExecRequest("POST", "image-resize", paramDict, outputFilePath, 30);
         }
 
         /// <summary>Watermark one image with another image</summary>
@@ -639,7 +649,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse ImageWatermark(Dictionary<string, string> paramDict, string outputFilePath)
         {
-            return ExecRequest("POST", "image-watermark", paramDict, outputFilePath, 20);
+            return ExecRequest("POST", "image-watermark", paramDict, outputFilePath, 30);
         }
 
         /// <summary>The IP Blocklist API will detect potentially malicious or dangerous IP addresses</summary>
@@ -744,7 +754,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse IpProbe(Dictionary<string, string> paramDict)
         {
-            return ExecRequest("GET", "ip-probe", paramDict, default, 120);
+            return ExecRequest("GET", "ip-probe", paramDict, default, 300);
         }
 
         /// <summary>Make an automated call to any valid phone number and playback an audio message</summary>
@@ -889,7 +899,7 @@ namespace NeutrinoApi
         /// <returns>Returns an ApiResponse object on success or failure</returns>
         public ApiResponse QrCode(Dictionary<string, string> paramDict, string outputFilePath)
         {
-            return ExecRequest("POST", "qr-code", paramDict, outputFilePath, 20);
+            return ExecRequest("POST", "qr-code", paramDict, outputFilePath, 30);
         }
 
         /// <summary>Send a unique security code to any mobile device via SMS</summary>
@@ -1161,7 +1171,7 @@ namespace NeutrinoApi
                     }
                 }
             }
-            return default;
+            return ApiResponse.OfErrorCode(0, "", ApiErrorCode.NoData);
         }
     }
 }
